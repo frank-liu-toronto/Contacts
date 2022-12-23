@@ -9,6 +9,8 @@
         BackgroundColor="Transparent"
         SeparatorColor="Silver"     
         RowHeight="65"
+        ItemSelected="listContacts_ItemSelected"
+        ItemTapped="listContacts_ItemTapped"
         >
         <ListView.ItemTemplate>
             <DataTemplate>
