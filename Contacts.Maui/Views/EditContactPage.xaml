@@ -5,6 +5,7 @@
              Title="Edit Contact">
     <VerticalStackLayout>
         <Label 
+            x:Name="lblName"
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
