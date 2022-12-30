@@ -40,7 +40,7 @@ namespace Contacts.Maui.Models
         {
             if (contactId != contact.ContactId) return;
 
-            var contactToUpdate = GetContactById(contactId);
+            var contactToUpdate = _contacts.FirstOrDefault(x => x.ContactId == contactId);
             if (contactToUpdate != null)
             {
                 //AutoMapper
@@ -48,7 +48,7 @@ namespace Contacts.Maui.Models
                 contactToUpdate.Email = contact.Email;
                 contactToUpdate.Name = contact.Name;
                 contactToUpdate.Phone = contact.Phone;
-            }
+            }             
         }
     }
 }
