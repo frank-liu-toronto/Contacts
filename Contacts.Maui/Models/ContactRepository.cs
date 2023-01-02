@@ -50,5 +50,12 @@ namespace Contacts.Maui.Models
                 contactToUpdate.Phone = contact.Phone;
             }             
         }
+
+        public static void AddCotact(Contact contact)
+        {
+            var maxId = _contacts.Max(x => x.ContactId);
+            contact.ContactId = maxId + 1;
+            _contacts.Add(contact);
+        }
     }
 }
