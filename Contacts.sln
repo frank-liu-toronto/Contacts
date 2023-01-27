@@ -5,9 +5,13 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contacts.Maui", "Contacts.Maui\Contacts.Maui.csproj", "{C608F71F-0033-4F80-8A30-A241EAABACA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts.CoreBusiness", "Contacts.CoreBusiness\Contacts.CoreBusiness.csproj", "{71FBDB77-A3B2-4135-BE5A-E8EC1EE8BFE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contacts.CoreBusiness", "Contacts.CoreBusiness\Contacts.CoreBusiness.csproj", "{71FBDB77-A3B2-4135-BE5A-E8EC1EE8BFE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts.UseCases", "Contacts.UseCases\Contacts.UseCases.csproj", "{F638B96D-F0C5-43D5-9FF2-A4B596201C14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contacts.UseCases", "Contacts.UseCases\Contacts.UseCases.csproj", "{F638B96D-F0C5-43D5-9FF2-A4B596201C14}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{EAFBCC00-0AC5-4C50-AD28-DA15A73C7F32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts.Plugins.DataStore.InMemory", "Plugins\Contacts.Plugins.DataStore.InMemory\Contacts.Plugins.DataStore.InMemory.csproj", "{4CC9E3E2-819A-45C5-BEBB-D5D3381D9FC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,16 +33,16 @@ Global
 		{F638B96D-F0C5-43D5-9FF2-A4B596201C14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F638B96D-F0C5-43D5-9FF2-A4B596201C14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F638B96D-F0C5-43D5-9FF2-A4B596201C14}.Release|Any CPU.Build.0 = Release|Any CPU
-		{94B5E5D0-06B8-44B1-B74D-7E19F58BCBA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{94B5E5D0-06B8-44B1-B74D-7E19F58BCBA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{94B5E5D0-06B8-44B1-B74D-7E19F58BCBA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{94B5E5D0-06B8-44B1-B74D-7E19F58BCBA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CC9E3E2-819A-45C5-BEBB-D5D3381D9FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CC9E3E2-819A-45C5-BEBB-D5D3381D9FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CC9E3E2-819A-45C5-BEBB-D5D3381D9FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CC9E3E2-819A-45C5-BEBB-D5D3381D9FC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{94B5E5D0-06B8-44B1-B74D-7E19F58BCBA5} = {CE04654B-3F02-42FE-836C-35716D255282}
+		{4CC9E3E2-819A-45C5-BEBB-D5D3381D9FC7} = {EAFBCC00-0AC5-4C50-AD28-DA15A73C7F32}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
