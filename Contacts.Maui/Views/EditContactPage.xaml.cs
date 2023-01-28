@@ -1,4 +1,5 @@
 using Contacts.Maui.Models;
+using Contacts.UseCases.Interfaces;
 using Contact = Contacts.Maui.Models.Contact;
 
 namespace Contacts.Maui.Views;
@@ -7,11 +8,14 @@ namespace Contacts.Maui.Views;
 [QueryProperty(nameof(ContactId),"Id")]
 public partial class EditContactPage : ContentPage
 {
-	private Contact contact;
-	public EditContactPage()
+	private CoreBusiness.Contact contact;
+    private readonly IViewContactUseCase viewContactUseCase;
+
+    public EditContactPage(IViewContactUseCase viewContactUseCase)
 	{
 		InitializeComponent();
-	}
+        this.viewContactUseCase = viewContactUseCase;
+    }
 
 	private void btnCancel_Clicked(object sender, EventArgs e)
 	{
@@ -21,9 +25,10 @@ public partial class EditContactPage : ContentPage
 	public string ContactId
 	{
 		set
-		{
-			contact = ContactRepository.GetContactById(int.Parse(value));
-			if (contact != null)
+		{			
+			contact = viewContactUseCase.ExecuteAsync(int.Parse(value)).GetAwaiter().GetResult();
+
+            if (contact != null)
 			{
 				contactCtrl.Name = contact.Name;
                 contactCtrl.Address = contact.Address;
@@ -41,7 +46,7 @@ public partial class EditContactPage : ContentPage
 		contact.Email = contactCtrl.Email;
 		contact.Phone = contactCtrl.Phone;
 
-		ContactRepository.UpdateContact(contact.ContactId, contact);
+		//ContactRepository.UpdateContact(contact.ContactId, contact);
         Shell.Current.GoToAsync("..");
     }    
 
