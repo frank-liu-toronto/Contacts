@@ -31,9 +31,11 @@ public static class MauiProgram
 		builder.Services.AddSingleton<IViewContactsUseCase, ViewContactsUseCase>();
 		builder.Services.AddSingleton<IViewContactUseCase, ViewContactUseCase>();
 		builder.Services.AddTransient<IEditContactUseCase, EditContactUseCase>();
+		builder.Services.AddTransient<IAddContactUseCase, AddContactUseCase>();
 
 		builder.Services.AddSingleton<ContactsPage>();
         builder.Services.AddSingleton<EditContactPage>();
+		builder.Services.AddSingleton<AddContactPage>();
 
         return builder.Build();
 	}
