@@ -28,6 +28,17 @@ namespace Contacts.Plugins.DataStore.InMemory
             return Task.CompletedTask;
         }
 
+        public Task DeleteContactAsync(int contactId)
+        {
+            var contact = _contacts.FirstOrDefault(x => x.ContactId == contactId);
+            if (contact != null)
+            {
+                _contacts.Remove(contact);
+            }
+
+            return Task.CompletedTask;
+        }
+
         public Task<Contact> GetContactByIdAsync(int contactId)
         {
             var contact = _contacts.FirstOrDefault(x => x.ContactId == contactId);
