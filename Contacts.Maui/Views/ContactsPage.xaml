@@ -6,8 +6,9 @@
 
     <Grid 
         Padding="5"
-        RowDefinitions="50, *, 50"
-        ColumnDefinitions="*">
+        RowDefinitions="50, *, 50, 50"
+        ColumnDefinitions="*"
+        RowSpacing="5">
         <SearchBar 
             x:Name="SearchBar"
             Grid.Row="0" 
@@ -48,6 +49,13 @@
             x:Name="btnAdd" 
             Text="Add Contact" 
             Clicked="btnAdd_Clicked"></Button>
+
+        <Button 
+            Grid.Row="3"
+            Grid.Column="0"
+            x:Name="btnTest" 
+            Text="Test" 
+             Clicked="btnTest_Clicked"></Button>
     </Grid>
 
     
