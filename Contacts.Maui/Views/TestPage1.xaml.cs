@@ -13,4 +13,11 @@ public partial class TestPage1 : ContentPage
 		viewModel = new ContactViewModel();
 		this.BindingContext = this.viewModel;
 	}
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+		this.viewModel.LoadContact(1);
+    }
 }

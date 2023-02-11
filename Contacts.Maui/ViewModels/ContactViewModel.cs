@@ -13,11 +13,25 @@ namespace Contacts.Maui.ViewModels
 {
     public partial class ContactViewModel : ObservableObject
     {
-        public Contact Contact { get; set; }
+        private Contact contact;
+
+        public Contact Contact
+        {
+            get => contact;
+            set
+            {
+                SetProperty(ref contact, value);
+            }
+        }
 
         public ContactViewModel()
         {
-            this.Contact = ContactRepository.GetContactById(1);
+            this.Contact = new Contact();
+        }
+
+        public void LoadContact(int contactId)
+        {
+            this.Contact = ContactRepository.GetContactById(contactId);
         }
 
         [RelayCommand]
