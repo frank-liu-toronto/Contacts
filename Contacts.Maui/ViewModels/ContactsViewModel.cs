@@ -1,4 +1,6 @@
-﻿using Contacts.UseCases.Interfaces;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Contacts.UseCases.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,16 +12,20 @@ using Contact = Contacts.CoreBusiness.Contact;
 
 namespace Contacts.Maui.ViewModels
 {
-    public class ContactsViewModel
+    public partial class ContactsViewModel : ObservableObject
     {
         private readonly IViewContactsUseCase viewContactsUseCase;
+        private readonly IDeleteContactUseCase deleteContactUseCase;
 
         public ObservableCollection<Contact> Contacts { get; set; }
 
-        public ContactsViewModel(IViewContactsUseCase viewContactsUseCase)
+        public ContactsViewModel(
+            IViewContactsUseCase viewContactsUseCase,
+            IDeleteContactUseCase deleteContactUseCase
+            )
         {
             this.viewContactsUseCase = viewContactsUseCase;
-
+            this.deleteContactUseCase = deleteContactUseCase;
             this.Contacts = new ObservableCollection<Contact>();
         }
 
@@ -35,6 +41,13 @@ namespace Contacts.Maui.ViewModels
                     this.Contacts.Add(contact);
                 }
             }
+        }
+
+        [RelayCommand]
+        public async Task DeleteContact(int contactId)
+        {
+            await deleteContactUseCase.ExecuteAsync(contactId);
+            await LoadContactsAsync();
         }
 
     }
