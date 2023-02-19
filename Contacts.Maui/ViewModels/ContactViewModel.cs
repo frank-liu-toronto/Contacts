@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Contacts.Maui.Models;
+using Contacts.Maui.Views_MVVM;
 using Contacts.UseCases.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace Contacts.Maui.ViewModels
     {
         private Contact contact;
         private readonly IViewContactUseCase viewContactUseCase;
+        private readonly IEditContactUseCase editContactUseCase;
 
         public Contact Contact
         {
@@ -26,10 +28,28 @@ namespace Contacts.Maui.ViewModels
             }
         }
 
-        public ContactViewModel(IViewContactUseCase viewContactUseCase)
+        private bool isContactValid;
+
+        public bool IsContactValid
+        {
+            get { return isContactValid; }
+            set 
+            { 
+                if (value == false)
+                {
+                    isContactValid = value;
+                }                
+            }
+        }
+
+
+        public ContactViewModel(
+            IViewContactUseCase viewContactUseCase,
+            IEditContactUseCase editContactUseCase)
         {
             this.Contact = new Contact();
             this.viewContactUseCase = viewContactUseCase;
+            this.editContactUseCase = editContactUseCase;
         }
 
         public async Task LoadContact(int contactId)
@@ -37,12 +57,18 @@ namespace Contacts.Maui.ViewModels
             this.Contact = await this.viewContactUseCase.ExecuteAsync(contactId);
         }
 
-        //[RelayCommand]
-        //public void SaveContact()
-        //{
-        //    ContactRepository.UpdateContact(
-        //        this.Contact.ContactId,
-        //        this.Contact);
-        //}
+        [RelayCommand]
+        public async Task EditContact()
+        {
+            await this.editContactUseCase.ExecuteAsync(this.contact.ContactId, this.contact);
+            await Shell.Current.GoToAsync($"{nameof(Contacts_MVVM_Page)}");
+        }
+
+        [RelayCommand]
+        public async Task BackToContacts()
+        {
+            await Shell.Current.GoToAsync($"{nameof(Contacts_MVVM_Page)}");
+        }
+        
     }
 }
