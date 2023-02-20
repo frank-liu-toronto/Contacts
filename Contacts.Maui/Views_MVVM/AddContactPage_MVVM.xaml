@@ -2,13 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:Contacts.Maui.Views_MVVM.Controls"
-             x:Class="Contacts.Maui.Views_MVVM.EditContactPage_MVVM"
-             
-             Title="Edit Contact">
+             x:Class="Contacts.Maui.Views_MVVM.AddContactPage_MVVM"
+             Title="Add Contact">
 
     <controls:ContactControl_MVVM 
-        IsForEdit="True"
-        BindingContext="{Binding .}">        
-    </controls:ContactControl_MVVM>    
-    
+        IsForAdd="True"
+        BindingContext="{Binding .}">
+    </controls:ContactControl_MVVM>
+
 </ContentPage>
