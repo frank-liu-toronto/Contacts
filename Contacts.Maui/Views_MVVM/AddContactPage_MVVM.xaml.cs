@@ -13,4 +13,11 @@ public partial class AddContactPage_MVVM : ContentPage
 
         this.BindingContext = this.contactViewModel;
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        this.contactViewModel.Contact = new CoreBusiness.Contact();
+    }
 }
