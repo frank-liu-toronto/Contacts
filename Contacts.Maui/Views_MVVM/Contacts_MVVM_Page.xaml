@@ -15,7 +15,8 @@
             x:Name="SearchBar"
             Grid.Row="0" 
             Grid.Column="0"
-            Placeholder="Search Contact"></SearchBar>
+            Placeholder="Search Contact"
+            Text="{Binding FilterText}"></SearchBar>
 
         <CollectionView 
             x:Name="ContactsCollection"
