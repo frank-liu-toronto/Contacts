@@ -35,28 +35,20 @@ namespace Contacts.Plugins.DataStore.SQLLite
         public async Task<List<Contacts.CoreBusiness.Contact>> GetContactsAsync(string filterText)
         {
             if (string.IsNullOrWhiteSpace(filterText))
-            {
                 return await this.database.Table<Contact>().ToListAsync();
-            }
 
-            var contacts = await this.database.Table<Contact>().Where(x => !string.IsNullOrWhiteSpace(x.Name) && x.Name.StartsWith(filterText, StringComparison.OrdinalIgnoreCase))?.ToListAsync();
-
-            if (contacts == null || contacts.Count <= 0)
-                contacts = await this.database.Table<Contact>().Where(x => !string.IsNullOrWhiteSpace(x.Email) && x.Email.StartsWith(filterText, StringComparison.OrdinalIgnoreCase))?.ToListAsync();
-            else
-                return contacts;
-
-            if (contacts == null || contacts.Count <= 0)
-                contacts = await this.database.Table<Contact>().Where(x => !string.IsNullOrWhiteSpace(x.Phone) && x.Phone.StartsWith(filterText, StringComparison.OrdinalIgnoreCase))?.ToListAsync();
-            else
-                return contacts;
-
-            if (contacts == null || contacts.Count <= 0)
-                contacts = await this.database.Table<Contact>().Where(x => !string.IsNullOrWhiteSpace(x.Address) && x.Address.StartsWith(filterText, StringComparison.OrdinalIgnoreCase))?.ToListAsync();
-            else
-                return contacts;
-
-            return contacts;
+            return await this.database.QueryAsync<Contact>(@"
+                SELECT *
+                FROM Contact
+                WHERE 
+                    Name LIKE ? OR
+                    Email LIKE ? OR
+                    Phone LIKE ? OR
+                    Address LIKE ?",
+                    $"{filterText}%",
+                    $"{filterText}%",
+                    $"{filterText}%",
+                    $"{filterText}%");
         }
 
         public async Task UpdateContactAsync(int contactId, Contacts.CoreBusiness.Contact contact)
