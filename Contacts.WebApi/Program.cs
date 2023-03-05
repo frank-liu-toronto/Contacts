@@ -1,4 +1,5 @@
 using Contacts.WebApi;
+using Contacts.WebApi.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,12 @@ app.MapGet("/api/contacts", async (ApplicationDbContext db) =>
     var contacts = await db.Contacts.ToListAsync();
 
     return Results.Ok(contacts);
+});
+
+app.MapPost("/api/contacts", async (Contact contact, ApplicationDbContext db) =>
+{
+    db.Contacts.Add(contact);
+    await db.SaveChangesAsync();
 });
 
 app.Run();
